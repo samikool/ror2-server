@@ -67,7 +67,9 @@ COPY default_config.cfg ${STEAMAPPDIR}/default_config.cfg
 
 WORKDIR ${STEAMAPPDIR}
 
-VOLUME ${STEAMAPPDIR}
+RUN "${STEAMCMD}" +force_install_dir "${STEAMAPPDIR}" +login anonymous +@sSteamCmdForcePlatformType windows +app_update "${STEAMAPPID}" +quit
+
+VOLUME "${STEAMAPPDIR}}"
 
 # Check for message to see if server is ready
 HEALTHCHECK --interval=10s --timeout=5s \
